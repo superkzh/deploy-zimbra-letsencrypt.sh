@@ -19,6 +19,7 @@ cd acme.sh
 ```
 Note: make the first -d entry your zmhostname
 ```bash
+chmod 755 /user # owner that runs acme.sh
 chmod 755 .acme.sh   #to help zimbra user pull certs
 acme.sh --issue --dns -d mail.example.com -d mail.example.net -d tmail.example.com
 ```
