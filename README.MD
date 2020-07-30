@@ -61,13 +61,19 @@ user="/home/YourName" # ~user/.acme.sh --- owner that runs acme.sh
 # verbose output
 d=1  # change to 0 if run from cron
 exit # comment this out after adjusting the top two values
+
+/opt/letsencrypt/deploy-zimbra-letsencrypt.sh
 ```
 when the first load certificate successedly,we will configure crontab so we can auto renewal certificate
+
 modify the following variables in deploy-zimbra-letsencrypt.sh
+```bash
 1.min = 20 # #days for CERT expire before will load new certificate
 2.d=0 # so we can't make sure every step
-3.as root user,crontab -e
+3.as root user
+crontab -e
 5 1 * * * su - zimbra /opt/letsencrypt/deploy-zimbra-letsencrypt.sh
+```
 
 # General Overview
 Steps:
