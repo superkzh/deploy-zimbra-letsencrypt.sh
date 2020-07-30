@@ -68,8 +68,8 @@ when the first load certificate successedly,we will configure crontab so we can 
 
 modify the following variables in deploy-zimbra-letsencrypt.sh
 ```bash
-1.min = 20 # #days for CERT expire before will load new certificate
-2.d=0 # so we can't make sure every step
+1.min = 20 #days for CERT expire before will load new certificate
+2.d=0 #so we can't make sure every step
 3.as root user
 crontab -e
 5 1 * * * su - zimbra /opt/letsencrypt/deploy-zimbra-letsencrypt.sh
