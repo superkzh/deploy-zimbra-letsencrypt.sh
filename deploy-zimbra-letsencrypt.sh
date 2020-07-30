@@ -92,6 +92,8 @@ fi
 #   exit 1
 #fi
 #
+rm -rf /opt/letsencrypt/.acme.sh #remove folder - start with a clean slate!
+mkdir /opt/letsencrypt/.acme.sh # restore blank directory
 /bin/cp -rf $user/.acme.sh/$domain $certs
 if [ $? == 1 ]; then
    say "Check permissions: CERT cp failed for $user/.acme.sh"
@@ -105,6 +107,7 @@ tar cvf zimbra.tar.$(date "+%Y%m%d") zimbra
 cd "$certs"
 # from: https://www.identrust.com/certificates/trustid/root-download-x3.html
 # append IdentTrust CA 
+echo >> fullchain.cer #adds a newline between the new cert otherwise will not verify in zmcertmgr
 cat << EOF >> fullchain.cer
 -----BEGIN CERTIFICATE-----
 MIIDSjCCAjKgAwIBAgIQRK+wgNajJ7qJMDmGLvhAazANBgkqhkiG9w0BAQUFADA/
@@ -148,4 +151,4 @@ cd $certs
 /opt/zimbra/bin/zmcertmgr deploycrt comm $domain.cer fullchain.cer
 
 debug "If no errors than proceed to restart zimbra"
-zmcontrol restart
+/opt/zimbra/bin/zmcontrol restart
