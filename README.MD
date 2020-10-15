@@ -41,14 +41,15 @@ The --standalone option results in acme.sh listening at port 80 and run as root 
 As zimbra user:
 ```bash
 su - zimbra
-git clone https://github.com/JimDunphy/deploy-zimbra-letsencrypt.sh.git /tmp/letsencrypt
+git clone https://github.com/superkzh/deploy-zimbra-letsencrypt.sh.git /tmp/letsencrypt
 ```
 As root:
 ```bash
 su - 
 mv /tmp/letsencrypt /opt/
 chown zimbra /opt/letsencrypt
-chmod 755 /user # owner that runs acme.sh
+chmod 755 /user # owner that runs acme.sh ,commonly is /root
+cd /root
 chmod 755 .acme.sh   #to help zimbra user pull certs
 exit
 ```
